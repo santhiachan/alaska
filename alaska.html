@@ -1,0 +1,1436 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Alaska Cruise Packing Checklist · May 9–17</title>
+<style>
+  /* ---------- Foundations ---------- */
+  :root {
+    /* Icy blue palette */
+    --ice-50:  #f4f8fb;
+    --ice-100: #e7eff5;
+    --ice-200: #d3e2ed;
+    --ice-300: #b5cde0;
+    --ice-400: #8db4cf;
+    --ice-500: #6597b8;
+    --ice-600: #487a9c;
+    --ice-700: #355e7a;
+    --ice-800: #284659;
+    --ice-900: #1c3140;
+
+    /* Warm neutrals */
+    --paper:   #fbfaf7;
+    --bone:    #f3efe8;
+    --stone-100: #ecead9;
+    --stone-300: #cfc9b9;
+    --stone-500: #8a8576;
+    --stone-700: #4d4a42;
+    --ink:      #1f2933;
+
+    /* Accents */
+    --accent:   #6597b8;
+    --accent-soft: #cfe1ee;
+    --success:  #6f8f7d;
+    --warning:  #b88a4a;
+
+    /* System */
+    --r-sm: 8px;
+    --r-md: 14px;
+    --r-lg: 20px;
+    --r-xl: 28px;
+    --shadow-sm: 0 1px 2px rgba(28,49,64,.05), 0 2px 6px rgba(28,49,64,.04);
+    --shadow-md: 0 2px 6px rgba(28,49,64,.06), 0 12px 28px rgba(28,49,64,.07);
+    --shadow-lg: 0 8px 24px rgba(28,49,64,.08), 0 24px 60px rgba(28,49,64,.09);
+
+    --serif: "Cormorant Garamond","Iowan Old Style","Palatino Linotype",ui-serif,Georgia,serif;
+    --sans:  "Inter","Helvetica Neue",-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Arial,sans-serif;
+  }
+
+  @import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Inter:wght@300;400;500;600;700&display=swap");
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: var(--sans);
+    color: var(--ink);
+    background-color: var(--paper);
+    background-image:
+      linear-gradient(rgba(251,250,247,.86), rgba(251,250,247,.92)),
+      url("assets/background.jpg");
+    background-attachment: fixed;
+    background-size: cover, 600px auto;
+    background-position: center, center top;
+    background-repeat: no-repeat, repeat;
+    line-height: 1.55;
+    font-weight: 400;
+    letter-spacing: .005em;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection { background: var(--ice-200); color: var(--ice-900); }
+
+  /* ---------- Layout ---------- */
+  .shell { max-width: 1080px; margin: 0 auto; padding: 0 24px 96px; }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    margin: 32px auto 0;
+    max-width: 1080px;
+    border-radius: var(--r-xl);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    background: #fff;
+    position: relative;
+  }
+  .hero__chrome {
+    position: absolute; top: 14px; right: 14px; z-index: 3;
+    display: flex; gap: 8px; align-items: center;
+  }
+  .gear {
+    width: 38px; height: 38px;
+    display: inline-flex; align-items: center; justify-content: center;
+    border-radius: 50%;
+    background: rgba(255,255,255,.85);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid var(--ice-200);
+    color: var(--ice-800);
+    cursor: pointer;
+    transition: all .2s ease;
+    box-shadow: var(--shadow-sm);
+    padding: 0;
+  }
+  .gear:hover { background: #fff; color: var(--ice-900); border-color: var(--ice-400); }
+  .gear svg { width: 18px; height: 18px; }
+  .gear .avatar { width: 30px; height: 30px; border-radius: 50%; object-fit: cover; }
+  .sync-pill {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(255,255,255,.85);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid var(--ice-200);
+    border-radius: 999px;
+    padding: 6px 12px;
+    font-family: var(--sans);
+    font-size: 12px;
+    color: var(--ice-800);
+    box-shadow: var(--shadow-sm);
+    transition: all .2s ease;
+  }
+  .sync-pill .sync-dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--stone-300);
+    transition: background .2s ease;
+  }
+  .sync-pill[data-state="local"]   .sync-dot { background: var(--stone-500); }
+  .sync-pill[data-state="synced"]  .sync-dot { background: var(--success); }
+  .sync-pill[data-state="signin"]  .sync-dot { background: var(--warning); }
+  .sync-pill[data-state="saving"]  .sync-dot { background: var(--ice-500); animation: pulse 1.2s infinite; }
+  @keyframes pulse { 50% { opacity: .35; } }
+
+  /* ---------- Auth modal ---------- */
+  .modal-backdrop {
+    position: fixed; inset: 0;
+    background: rgba(28,49,64,.35);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    display: none;
+    align-items: center; justify-content: center;
+    z-index: 50;
+    animation: fadeIn .2s ease;
+  }
+  .modal-backdrop.is-open { display: flex; }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  .modal {
+    position: relative;
+    background: #fff;
+    border-radius: var(--r-xl);
+    box-shadow: var(--shadow-lg);
+    width: 92%; max-width: 420px;
+    padding: 28px 28px 24px;
+    border: 1px solid var(--ice-200);
+  }
+  .modal__close {
+    position: absolute; top: 16px; right: 16px;
+    width: 30px; height: 30px;
+    border: 0; background: transparent; color: var(--stone-500);
+    border-radius: 50%; cursor: pointer;
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+  .modal__close:hover { background: var(--ice-50); color: var(--ice-800); }
+  .modal__title {
+    font-family: var(--serif);
+    font-size: 26px;
+    color: var(--ice-900);
+    margin: 0 0 4px;
+    font-weight: 500;
+  }
+  .modal__sub { color: var(--stone-700); font-size: 14px; margin: 0 0 18px; }
+  .modal__user {
+    display: flex; align-items: center; gap: 12px;
+    padding: 12px;
+    background: var(--ice-50);
+    border: 1px solid var(--ice-100);
+    border-radius: var(--r-md);
+    margin-bottom: 14px;
+  }
+  .modal__user img { width: 40px; height: 40px; border-radius: 50%; }
+  .modal__user .name { font-weight: 500; color: var(--ice-900); font-size: 14px; }
+  .modal__user .email { color: var(--stone-500); font-size: 12px; }
+  .gbtn {
+    width: 100%;
+    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+    padding: 11px 16px;
+    border-radius: var(--r-md);
+    border: 1px solid var(--ice-300);
+    background: #fff;
+    color: var(--ice-900);
+    font-family: var(--sans);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all .2s ease;
+  }
+  .gbtn:hover { border-color: var(--ice-500); background: var(--ice-50); }
+  .gbtn:disabled { opacity: .5; cursor: not-allowed; }
+  .gbtn--ghost { border-color: var(--ice-200); color: var(--stone-700); background: transparent; }
+  .modal__note {
+    font-size: 12px; color: var(--stone-500);
+    margin-top: 14px; line-height: 1.5;
+  }
+  .modal__note code {
+    background: var(--ice-50); padding: 1px 5px; border-radius: 4px;
+    font-size: 11px; color: var(--ice-800);
+  }
+  .modal__err {
+    margin-top: 12px;
+    padding: 10px 12px;
+    background: #fdf3ec;
+    border: 1px solid #f3d8c0;
+    border-radius: var(--r-sm);
+    color: #8a4a1a;
+    font-size: 13px;
+    display: none;
+  }
+  .modal__err.is-shown { display: block; }
+  .hero__media {
+    aspect-ratio: 1376 / 720;
+    background: url("assets/header.jpeg") center center / cover no-repeat;
+    position: relative;
+  }
+  .hero__media::after {
+    content: "";
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(28,49,64,0) 40%, rgba(28,49,64,.55) 100%);
+  }
+  .hero__body { padding: 28px 36px 32px; }
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 12px; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--ice-700); font-weight: 600;
+  }
+  .eyebrow .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--ice-500); }
+  h1.title {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(36px, 5.2vw, 56px);
+    line-height: 1.05;
+    margin: 10px 0 8px;
+    color: var(--ice-900);
+    letter-spacing: -.01em;
+  }
+  .subtitle {
+    color: var(--stone-700);
+    font-size: 17px;
+    max-width: 64ch;
+  }
+  .mood {
+    display: flex; flex-wrap: wrap; gap: 8px;
+    margin-top: 18px;
+  }
+  .mood span {
+    font-size: 12.5px;
+    color: var(--ice-800);
+    background: var(--ice-100);
+    padding: 6px 12px;
+    border-radius: 999px;
+    border: 1px solid var(--ice-200);
+  }
+
+  /* ---------- Section heading ---------- */
+  .section { margin-top: 56px; }
+  .section__head {
+    display: flex; align-items: end; justify-content: space-between;
+    gap: 16px; margin-bottom: 20px;
+  }
+  .section__title {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 30px;
+    color: var(--ice-900);
+    margin: 0;
+    letter-spacing: -.005em;
+  }
+  .section__sub { color: var(--stone-500); font-size: 14px; }
+
+  /* ---------- Timeline ---------- */
+  .timeline {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+    gap: 14px;
+  }
+  .day {
+    background: rgba(255,255,255,.78);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border: 1px solid var(--ice-200);
+    border-radius: var(--r-md);
+    padding: 16px 16px 18px;
+    box-shadow: var(--shadow-sm);
+    transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  }
+  .day:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); border-color: var(--ice-300); }
+  .day__num {
+    font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--ice-600); font-weight: 600;
+  }
+  .day__date { color: var(--stone-500); font-size: 12px; margin-top: 2px; }
+  .day__loc {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--ice-900);
+    margin-top: 8px;
+    line-height: 1.2;
+  }
+  .day__act { color: var(--stone-700); font-size: 13px; margin-top: 6px; }
+  .day__icon {
+    width: 28px; height: 28px;
+    display: inline-flex; align-items: center; justify-content: center;
+    color: var(--ice-600);
+    margin-bottom: 6px;
+  }
+
+  /* ---------- Progress bar ---------- */
+  .progress {
+    position: sticky; top: 12px; z-index: 5;
+    margin-top: 32px;
+    background: rgba(255,255,255,.92);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--ice-200);
+    border-radius: var(--r-lg);
+    padding: 18px 22px;
+    box-shadow: var(--shadow-md);
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 18px;
+  }
+  .progress__label { font-size: 13px; color: var(--stone-700); }
+  .progress__count { font-family: var(--serif); font-size: 28px; color: var(--ice-900); line-height: 1; }
+  .progress__pct { font-size: 13px; color: var(--ice-700); font-weight: 600; }
+  .progress__bar {
+    height: 6px; background: var(--ice-100); border-radius: 999px; overflow: hidden;
+    margin-top: 10px;
+  }
+  .progress__fill {
+    height: 100%; width: 0%;
+    background: linear-gradient(90deg, var(--ice-400), var(--ice-600));
+    border-radius: 999px;
+    transition: width .4s cubic-bezier(.2,.8,.2,1);
+  }
+  .progress__actions { display: flex; gap: 8px; }
+  .btn {
+    border: 1px solid var(--ice-300);
+    background: #fff;
+    color: var(--ice-800);
+    border-radius: 999px;
+    padding: 8px 14px;
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background .2s ease, border-color .2s ease, color .2s ease, transform .1s ease;
+  }
+  .btn:hover { background: var(--ice-50); border-color: var(--ice-400); color: var(--ice-900); }
+  .btn:active { transform: scale(.97); }
+  .btn--ghost { border-color: transparent; background: transparent; color: var(--stone-500); }
+  .btn--ghost:hover { color: var(--ice-700); background: var(--ice-50); }
+
+  /* ---------- Filter tabs ---------- */
+  .tabs {
+    display: flex; flex-wrap: wrap; gap: 6px;
+    margin: 24px 0 20px;
+  }
+  .tab {
+    border: 1px solid var(--ice-200);
+    background: rgba(255,255,255,.7);
+    color: var(--stone-700);
+    border-radius: 999px;
+    padding: 7px 14px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all .2s ease;
+    font-family: var(--sans);
+  }
+  .tab:hover { border-color: var(--ice-400); color: var(--ice-800); }
+  .tab.is-active {
+    background: var(--ice-800);
+    color: #fff;
+    border-color: var(--ice-800);
+  }
+  .tab .pill {
+    display: inline-block;
+    margin-left: 6px;
+    font-size: 11px;
+    color: inherit;
+    opacity: .7;
+  }
+
+  /* ---------- Must-pack-first ---------- */
+  .priority {
+    background: linear-gradient(180deg, #fff, var(--ice-50));
+    border: 1px solid var(--ice-200);
+    border-radius: var(--r-lg);
+    padding: 22px 24px 18px;
+    margin-bottom: 28px;
+    box-shadow: var(--shadow-sm);
+  }
+  .priority__title {
+    display: flex; align-items: center; gap: 10px;
+    font-family: var(--serif);
+    font-size: 22px;
+    color: var(--ice-900);
+    margin: 0 0 6px;
+  }
+  .priority__sub { color: var(--stone-500); font-size: 13px; margin: 0 0 14px; }
+  .priority__empty { color: var(--stone-500); font-size: 13px; margin: 0; font-style: italic; }
+  .priority__list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 6px 16px;
+  }
+
+  /* ---------- Categories ---------- */
+  .cats { display: grid; gap: 18px; }
+  .cat {
+    background: rgba(255,255,255,.86);
+    border: 1px solid var(--ice-200);
+    border-radius: var(--r-lg);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+    transition: box-shadow .25s ease;
+  }
+  .cat:hover { box-shadow: var(--shadow-md); }
+  .cat__head {
+    display: grid;
+    grid-template-columns: 36px 1fr auto auto;
+    align-items: center;
+    gap: 14px;
+    padding: 18px 22px;
+    cursor: pointer;
+    user-select: none;
+  }
+  .cat__icon {
+    width: 36px; height: 36px;
+    display: inline-flex; align-items: center; justify-content: center;
+    background: var(--ice-100);
+    color: var(--ice-700);
+    border-radius: 50%;
+  }
+  .cat__name {
+    font-family: var(--serif);
+    font-size: 22px;
+    color: var(--ice-900);
+    margin: 0;
+    font-weight: 500;
+  }
+  .cat__meta { color: var(--stone-500); font-size: 13px; font-variant-numeric: tabular-nums; }
+  .chev {
+    width: 20px; height: 20px;
+    color: var(--ice-500);
+    transition: transform .25s ease;
+  }
+  .cat.is-collapsed .chev { transform: rotate(-90deg); }
+  .cat__body {
+    padding: 0 22px 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 4px 16px;
+  }
+  .cat.is-collapsed .cat__body { display: none; }
+
+  /* ---------- Item ---------- */
+  .item {
+    display: flex; align-items: center; gap: 12px;
+    padding: 9px 6px;
+    border-radius: var(--r-sm);
+    cursor: pointer;
+    transition: background .15s ease;
+  }
+  .item:hover { background: var(--ice-50); }
+  .item input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 20px; height: 20px;
+    border: 1.5px solid var(--ice-400);
+    border-radius: 6px;
+    background: #fff;
+    cursor: pointer;
+    position: relative;
+    flex-shrink: 0;
+    transition: all .2s ease;
+  }
+  .item input[type="checkbox"]:hover { border-color: var(--ice-600); }
+  .item input[type="checkbox"]:checked {
+    background: var(--ice-700);
+    border-color: var(--ice-700);
+  }
+  .item input[type="checkbox"]:checked::after {
+    content: "";
+    position: absolute;
+    left: 5px; top: 1px;
+    width: 6px; height: 11px;
+    border: solid #fff;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+  .item__label {
+    font-size: 14.5px;
+    color: var(--ink);
+    transition: color .2s ease, opacity .2s ease;
+    flex: 1;
+  }
+  .item.is-checked .item__label {
+    color: var(--stone-500);
+    text-decoration: line-through;
+    text-decoration-color: var(--ice-400);
+    text-decoration-thickness: 1px;
+  }
+  .item__star {
+    width: 22px; height: 22px;
+    display: inline-flex; align-items: center; justify-content: center;
+    border: none; background: transparent;
+    color: var(--ink-400);
+    cursor: pointer;
+    border-radius: 999px;
+    transition: color .15s ease, background .15s ease, transform .15s ease;
+    flex-shrink: 0;
+    padding: 0;
+    opacity: .55;
+  }
+  .item:hover .item__star,
+  .item:focus-within .item__star { opacity: 1; }
+  .item__star:hover { background: var(--ice-100); color: var(--warning); transform: scale(1.08); }
+  .item__star svg { width: 14px; height: 14px; }
+  .item__star.is-on { color: var(--warning); opacity: 1; }
+  .item__star.is-on svg { fill: var(--warning); }
+  .item__remove {
+    width: 22px; height: 22px;
+    display: inline-flex; align-items: center; justify-content: center;
+    border-radius: 50%;
+    border: 0; background: transparent;
+    color: var(--stone-500);
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity .15s ease, background .15s ease, color .15s ease;
+    flex-shrink: 0;
+  }
+  .item:hover .item__remove,
+  .item:focus-within .item__remove { opacity: 1; }
+  .item__remove:hover { background: var(--ice-100); color: var(--ice-800); }
+  .item__remove svg { width: 12px; height: 12px; }
+
+  /* ---------- Add item ---------- */
+  .add-row {
+    display: flex; align-items: center; gap: 10px;
+    grid-column: 1 / -1;
+    padding: 6px 6px 2px;
+  }
+  .add-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    border: 1px dashed var(--ice-300);
+    background: transparent;
+    color: var(--ice-700);
+    border-radius: 999px;
+    padding: 6px 12px;
+    font-family: var(--sans);
+    font-size: 13px;
+    cursor: pointer;
+    transition: all .2s ease;
+  }
+  .add-btn:hover { border-color: var(--ice-500); background: var(--ice-50); color: var(--ice-900); }
+  .add-btn svg { width: 12px; height: 12px; }
+  .add-form {
+    display: flex; gap: 8px; align-items: center;
+    grid-column: 1 / -1;
+    padding: 6px 6px 2px;
+  }
+  .add-form input {
+    flex: 1;
+    border: 1px solid var(--ice-300);
+    background: #fff;
+    border-radius: 999px;
+    padding: 8px 14px;
+    font-family: var(--sans);
+    font-size: 14px;
+    color: var(--ink);
+    outline: none;
+    transition: border-color .2s ease, box-shadow .2s ease;
+  }
+  .add-form input:focus {
+    border-color: var(--ice-500);
+    box-shadow: 0 0 0 3px var(--ice-100);
+  }
+  .add-form .add-cancel {
+    border: 0; background: transparent; color: var(--stone-500);
+    cursor: pointer; font-size: 13px; padding: 6px 8px;
+  }
+  .add-form .add-cancel:hover { color: var(--ice-800); }
+
+  /* ---------- Footer ---------- */
+  .foot {
+    margin-top: 64px;
+    text-align: center;
+    color: var(--stone-500);
+    font-size: 13px;
+  }
+  .foot .sep { margin: 0 8px; opacity: .5; }
+
+  /* Hide rule used by filter */
+  .cat.is-hidden { display: none; }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 720px) {
+    .hero__body { padding: 22px 22px 24px; }
+    .progress { grid-template-columns: 1fr; }
+    .progress__actions { justify-content: flex-start; }
+    .cat__head { padding: 16px 18px; gap: 10px; }
+    .cat__body { padding: 0 18px 16px; }
+    .section__title { font-size: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<main class="shell">
+
+  <!-- ============== HERO ============== -->
+  <section class="hero" aria-label="Trip overview">
+    <div class="hero__chrome">
+      <span class="sync-pill" id="syncPill" data-state="local" title="Sync status">
+        <span class="sync-dot"></span><span id="syncText">Saved locally</span>
+      </span>
+      <button class="gear" id="gearBtn" aria-label="Account settings" title="Sign in / settings">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="3"/>
+          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+        </svg>
+      </button>
+    </div>
+    <div class="hero__media" role="img" aria-label="Illustrated map of the Alaska Inside Passage cruise route"></div>
+    <div class="hero__body">
+      <div class="eyebrow"><span class="dot"></span>Voyage Brief · May 9 – May 17, 2026</div>
+      <h1 class="title">Alaska Cruise Packing Checklist</h1>
+      <p class="subtitle">A 7-day Holland America voyage from Vancouver to Whittier — through the Inside Passage, Glacier Bay, and College Fjord. Built for layered weather, small-boat tours, a helicopter, and a scenic railroad.</p>
+      <div class="mood" aria-hidden="true">
+        <span>❄ Glaciers</span>
+        <span>🐋 Whales</span>
+        <span>🚁 Helicopter</span>
+        <span>🚂 White Pass</span>
+        <span>⛰ Fjords</span>
+        <span>☕ Calm decks</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== TIMELINE ============== -->
+  <section class="section" aria-labelledby="timeline-h">
+    <div class="section__head">
+      <h2 id="timeline-h" class="section__title">The Itinerary</h2>
+      <span class="section__sub">8 days · Vancouver → Whittier</span>
+    </div>
+    <div class="timeline" id="timeline"></div>
+  </section>
+
+  <!-- ============== CHECKLIST ============== -->
+  <section class="section" aria-labelledby="checklist-h">
+    <div class="section__head">
+      <h2 id="checklist-h" class="section__title">The Packing List</h2>
+      <span class="section__sub" id="catCount">10 categories</span>
+    </div>
+
+    <!-- Progress -->
+    <div class="progress" role="status" aria-live="polite">
+      <div>
+        <div class="progress__label">Packed so far</div>
+        <div style="display:flex; align-items:baseline; gap:10px; margin-top:2px;">
+          <span class="progress__count" id="countText">0 of 0</span>
+          <span class="progress__pct" id="pctText">0%</span>
+        </div>
+        <div class="progress__bar"><div class="progress__fill" id="bar"></div></div>
+      </div>
+      <div class="progress__actions">
+        <button class="btn btn--ghost" id="resetBtn" title="Uncheck everything">Reset</button>
+      </div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="tabs" id="tabs" role="tablist"></div>
+
+    <!-- Must pack first -->
+    <div class="priority" id="priority">
+      <h3 class="priority__title">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l2.39 4.84L20 7.66l-4 3.9.94 5.5L12 14.77l-4.94 2.6.94-5.5-4-3.9 5.61-.82L12 2z"/></svg>
+        Must pack first
+      </h3>
+      <p class="priority__sub">Critical items — pack and confirm before anything else.</p>
+      <div class="priority__list" id="priorityList"></div>
+    </div>
+
+    <!-- Categories -->
+    <div class="cats" id="cats"></div>
+  </section>
+
+  <p class="foot">
+    Designed for one specific voyage<span class="sep">·</span><span id="footStatus">State saved locally to your browser</span><span class="sep">·</span>Bon voyage.
+  </p>
+</main>
+
+<!-- ============== AUTH MODAL ============== -->
+<div class="modal-backdrop" id="authModal" role="dialog" aria-modal="true" aria-labelledby="authTitle">
+  <div class="modal">
+    <button class="modal__close" id="authClose" aria-label="Close">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <h3 id="authTitle" class="modal__title">Sync across devices</h3>
+    <p class="modal__sub" id="authSub">Sign in to save your checklist to the cloud and access it from any device.</p>
+
+    <div id="authSignedOut">
+      <button class="gbtn" id="googleSignIn">
+        <svg width="18" height="18" viewBox="0 0 48 48" aria-hidden="true">
+          <path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3c-1.6 4.7-6.1 8-11.3 8-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/>
+          <path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.6 16 18.9 13 24 13c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.4 6.3 14.7z"/>
+          <path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.1C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-8l-6.5 5C9.6 39.6 16.2 44 24 44z"/>
+          <path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.3-2.2 4.3-4.1 5.7l6.2 5.1C41.1 35.7 44 30.3 44 24c0-1.3-.1-2.4-.4-3.5z"/>
+        </svg>
+        Sign in with Google
+      </button>
+      <p class="modal__note">Your checklist will be stored at <code>users/&lt;your-uid&gt;/packingChecklist/alaskaCruise2026</code> in Cloud Firestore. Until you sign in, your progress stays in this browser only.</p>
+    </div>
+
+    <div id="authSignedIn" style="display:none">
+      <div class="modal__user">
+        <img id="userPhoto" alt="" />
+        <div>
+          <div class="name" id="userName">—</div>
+          <div class="email" id="userEmail">—</div>
+        </div>
+      </div>
+      <button class="gbtn gbtn--ghost" id="signOutBtn">Sign out</button>
+      <p class="modal__note">Your checklist syncs to Firebase whenever you make a change.</p>
+    </div>
+
+    <div class="modal__err" id="authErr"></div>
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   DATA
+   ============================================================ */
+const ITINERARY = [
+  { d:"Pre",   date:"May 9",  loc:"Fly to Vancouver", act:"Travel day; overnight in Vancouver.", icon:"plane" },
+  { d:"Day 1", date:"May 10", loc:"Vancouver",        act:"Embark on the Holland America ship.",  icon:"ship" },
+  { d:"Day 2", date:"May 11", loc:"At Sea",           act:"Inside Passage scenic cruising.",       icon:"wave" },
+  { d:"Day 3", date:"May 12", loc:"Ketchikan",        act:"Port day in Alaska's first city.",      icon:"town" },
+  { d:"Day 4", date:"May 13", loc:"Juneau",           act:"Small-boat glacier viewing tour.",      icon:"whale" },
+  { d:"Day 5", date:"May 14", loc:"Skagway",          act:"AM helicopter glacier · PM White Pass railroad.", icon:"heli" },
+  { d:"Day 6", date:"May 15", loc:"At Sea",           act:"Glacier Bay scenic cruising.",          icon:"glacier" },
+  { d:"Day 7", date:"May 16", loc:"At Sea",           act:"College Fjord scenic cruising.",        icon:"fjord" },
+  { d:"Day 8", date:"May 17", loc:"Whittier",         act:"Disembark · cruise train to Anchorage · fly home.", icon:"train" },
+];
+
+const ICONS = {
+  plane:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16v-2l-8-5V3.5A1.5 1.5 0 0 0 11.5 2A1.5 1.5 0 0 0 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1l3.5 1v-1.5L13 19v-5.5L21 16Z"/></svg>',
+  ship:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18s1.5 2 4.5 2s4.5-2 4.5-2s1.5 2 4.5 2s4.5-2 4.5-2"/><path d="M5 14l1-5h12l1 5"/><path d="M12 4v5"/><path d="M9 9V7h6v2"/></svg>',
+  wave:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12c2 0 2-2 5-2s3 2 5 2s2-2 5-2s3 2 5 2"/><path d="M2 17c2 0 2-2 5-2s3 2 5 2s2-2 5-2s3 2 5 2"/></svg>',
+  town:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V10l5-3l5 3v11"/><path d="M13 21V13h7v8"/><path d="M16 17h1M16 21v-3"/></svg>',
+  whale:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 14c2-4 6-6 10-6s7 2 8 5"/><path d="M21 13l-3 3l3 2"/><circle cx="9" cy="11" r=".8" fill="currentColor"/></svg>',
+  heli:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16"/><path d="M9 7v3a3 3 0 0 0 3 3h2l4 3h2"/><path d="M12 13v3"/><path d="M9 17h6"/></svg>',
+  glacier:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18l4-7l3 4l3-6l4 6l4-3v6Z"/></svg>',
+  fjord:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 16l3-4l3 3l3-6l3 5l3-3l3 5"/><path d="M3 20h18"/></svg>',
+  train:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="4" width="14" height="13" rx="2"/><path d="M5 11h14"/><circle cx="9" cy="14" r="1"/><circle cx="15" cy="14" r="1"/><path d="M7 20l2-3M17 20l-2-3"/></svg>',
+  doc:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6"/></svg>',
+  shirt:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7l4-3l2 2h4l2-2l4 3l-2 4h-2v9H8v-9H6Z"/></svg>',
+  binoc:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="15" r="3"/><circle cx="18" cy="15" r="3"/><path d="M9 15v-7l3-2l3 2v7"/></svg>',
+  pill:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="9" width="18" height="6" rx="3" transform="rotate(-30 12 12)"/><path d="M9 6l6 12" /></svg>',
+  bolt:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4 14h7l-1 8l9-12h-7Z"/></svg>',
+  bag:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8h14l-1 12H6Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>',
+  mug:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 7h11v9a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4Z"/><path d="M16 9h2a2 2 0 0 1 0 6h-2"/></svg>',
+};
+
+const CATEGORIES = [
+  { id:"docs", name:"Travel Documents", icon:"doc",
+    items:[
+      {n:"Passport", priority:true},
+      {n:"Cruise documents (boarding pass)", priority:true},
+      {n:"Driver's license / ID", priority:true},
+      {n:"Travel insurance card"},
+      {n:"Credit cards (notify bank)"},
+      {n:"Cash for tips"},
+      {n:"Emergency contacts list", priority:true},
+      {n:"Flight boarding passes"},
+    ]},
+  { id:"layers", name:"Clothing Layers", icon:"shirt",
+    items:[
+      {n:"Waterproof shell jacket", priority:true},
+      {n:"Fleece or insulated mid-layer"},
+      {n:"Merino base layers (top + bottom)"},
+      {n:"Two warm sweaters"},
+      {n:"Long pants ×3"},
+      {n:"Warm wool socks ×4"},
+      {n:"Pajamas / sleepwear"},
+      {n:"Comfortable casual outfits"},
+    ]},
+  { id:"excursion", name:"Excursion Gear", icon:"binoc",
+    items:[
+      {n:"Binoculars (8×42 ideal)"},
+      {n:"Insulated gloves"},
+      {n:"Warm beanie / hat"},
+      {n:"Scarf or buff"},
+      {n:"Sunglasses (polarized)"},
+      {n:"Camera + spare battery"},
+      {n:"Phone lanyard / strap"},
+      {n:"Small daypack"},
+    ]},
+  { id:"smallboat", name:"Glacier Small-Boat Tour · Day 4", icon:"whale",
+    items:[
+      {n:"Waterproof jacket", priority:true},
+      {n:"Gloves"},
+      {n:"Warm layers underneath"},
+      {n:"Camera (on a strap)"},
+      {n:"Motion sickness medicine", priority:true},
+      {n:"Non-slip closed-toe shoes"},
+    ]},
+  { id:"heli", name:"Helicopter Glacier Tour · Day 5 AM", icon:"heli",
+    items:[
+      {n:"Warm layers (no bulky parka)"},
+      {n:"Sunglasses (glare on ice)"},
+      {n:"Gloves"},
+      {n:"Secure laced shoes", priority:true},
+      {n:"No loose items / scarves", priority:true},
+    ]},
+  { id:"rail", name:"White Pass Railroad · Day 5 PM", icon:"train",
+    items:[
+      {n:"Camera"},
+      {n:"Light snacks"},
+      {n:"Reusable water bottle"},
+      {n:"Comfortable layers"},
+    ]},
+  { id:"deck", name:"Scenic Cruising Days", icon:"glacier",
+    items:[
+      {n:"Warm deck outfit (parka + hat)"},
+      {n:"Binoculars"},
+      {n:"Camera"},
+      {n:"Reusable insulated mug"},
+      {n:"Book or journal"},
+    ]},
+  { id:"toiletries", name:"Toiletries & Medicine", icon:"pill",
+    items:[
+      {n:"Skincare basics"},
+      {n:"Sunscreen SPF 30+"},
+      {n:"Lip balm with SPF"},
+      {n:"Moisturizer (cold-weather)"},
+      {n:"Personal medication", priority:true},
+      {n:"Seasickness medicine"},
+      {n:"Pain reliever"},
+    ]},
+  { id:"electronics", name:"Electronics", icon:"bolt",
+    items:[
+      {n:"Phone"},
+      {n:"Phone charger + cable", priority:true},
+      {n:"Power bank"},
+      {n:"Camera charger / batteries"},
+      {n:"Travel adapter (if needed)"},
+      {n:"Headphones"},
+    ]},
+  { id:"essentials", name:"Cruise Essentials", icon:"bag",
+    items:[
+      {n:"Magnetic hooks (cabin walls)"},
+      {n:"Reusable water bottle"},
+      {n:"Day bag"},
+      {n:"Laundry / wet bag"},
+      {n:"Casual dinner outfits"},
+      {n:"One smart-casual outfit"},
+      {n:"Swimsuit (spa / pool)"},
+    ]},
+];
+
+/* ============================================================
+   STATE
+   ============================================================ */
+const STORAGE_KEY = "alaska-cruise-checklist-v1";
+const CUSTOM_KEY  = "alaska-cruise-checklist-custom-v1";
+const REMOVED_KEY = "alaska-cruise-checklist-removed-v1";
+const PRIORITY_KEY = "alaska-cruise-checklist-priority-v1";
+
+/* User-toggled priority overrides: { "catId::Item Name": true|false } */
+let priorityOverrides = {};
+try { priorityOverrides = JSON.parse(localStorage.getItem(PRIORITY_KEY) || "{}"); } catch(e){ priorityOverrides = {}; }
+function savePriority(){
+  localStorage.setItem(PRIORITY_KEY, JSON.stringify(priorityOverrides));
+  if (window.__cloudSync) window.__cloudSync();
+}
+function isPriorityItem(catId, name, defaultPriority){
+  const k = keyOf(catId, name);
+  if (Object.prototype.hasOwnProperty.call(priorityOverrides, k)) return !!priorityOverrides[k];
+  return !!defaultPriority;
+}
+let state = {};
+try { state = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}"); } catch (e) { state = {}; }
+function saveState(){
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  if (window.__cloudSync) window.__cloudSync();
+}
+const keyOf = (catId, name) => `${catId}::${name}`;
+
+/* Snapshot pristine defaults BEFORE any custom mutation */
+const ORIGINAL = {};
+CATEGORIES.forEach(c => { ORIGINAL[c.id] = c.items.map(it => it.n); });
+
+/* Apply persisted custom additions + removals to CATEGORIES */
+(function applyCustom(){
+  let removed = {}, added = {};
+  try { removed = JSON.parse(localStorage.getItem(REMOVED_KEY) || "{}"); } catch(e){}
+  try { added   = JSON.parse(localStorage.getItem(CUSTOM_KEY)  || "{}"); } catch(e){}
+  CATEGORIES.forEach(c => {
+    const drop = new Set(removed[c.id] || []);
+    c.items = c.items.filter(it => !drop.has(it.n));
+    (added[c.id] || []).forEach(name => {
+      if (!c.items.find(it => it.n === name)) c.items.push({ n: name, custom: true });
+    });
+  });
+})();
+
+function saveCustom(){
+  const removed = {}, added = {};
+  CATEGORIES.forEach(c => {
+    const orig = ORIGINAL[c.id] || [];
+    const cur  = c.items.map(it => it.n);
+    const dropped = orig.filter(n => !cur.includes(n));
+    const extra   = cur.filter(n => !orig.includes(n));
+    if (dropped.length) removed[c.id] = dropped;
+    if (extra.length)   added[c.id]   = extra;
+  });
+  localStorage.setItem(REMOVED_KEY, JSON.stringify(removed));
+  localStorage.setItem(CUSTOM_KEY, JSON.stringify(added));
+  if (window.__cloudSync) window.__cloudSync();
+}
+
+/* ============================================================
+   RENDER · TIMELINE
+   ============================================================ */
+function renderTimeline(){
+  const root = document.getElementById("timeline");
+  root.innerHTML = ITINERARY.map(d => `
+    <article class="day">
+      <div class="day__icon">${ICONS[d.icon] || ""}</div>
+      <div class="day__num">${d.d}</div>
+      <div class="day__date">${d.date}</div>
+      <div class="day__loc">${d.loc}</div>
+      <div class="day__act">${d.act}</div>
+    </article>
+  `).join("");
+}
+
+/* ============================================================
+   RENDER · TABS
+   ============================================================ */
+let activeFilter = "all";
+function renderTabs(){
+  const total = CATEGORIES.reduce((a,c)=>a+c.items.length,0);
+  const tabs = [{id:"all", name:"All", count: total}].concat(
+    CATEGORIES.map(c => ({id:c.id, name:c.name.replace(/ ·.*/,''), count:c.items.length}))
+  );
+  const root = document.getElementById("tabs");
+  root.innerHTML = tabs.map(t => `
+    <button class="tab ${t.id===activeFilter?"is-active":""}" data-filter="${t.id}" role="tab">
+      ${t.name}<span class="pill">${t.count}</span>
+    </button>
+  `).join("");
+  root.querySelectorAll(".tab").forEach(b => {
+    b.addEventListener("click", () => {
+      activeFilter = b.dataset.filter;
+      renderTabs();
+      applyFilter();
+    });
+  });
+}
+function applyFilter(){
+  document.querySelectorAll(".cat").forEach(el => {
+    const id = el.dataset.id;
+    el.classList.toggle("is-hidden", !(activeFilter==="all" || activeFilter===id));
+  });
+  document.getElementById("priority").style.display = (activeFilter==="all") ? "" : "none";
+}
+
+/* ============================================================
+   RENDER · PRIORITY GROUP
+   ============================================================ */
+function renderPriority(){
+  const root = document.getElementById("priorityList");
+  const items = [];
+  CATEGORIES.forEach(c => c.items.forEach(it => {
+    if (isPriorityItem(c.id, it.n, it.priority)) items.push({cat:c.id, n:it.n});
+  }));
+  if (items.length === 0) {
+    root.innerHTML = `<p class="priority__empty">No critical items yet — tap the ☆ next to any item to mark it must-pack-first.</p>`;
+    return;
+  }
+  root.innerHTML = items.map(it => itemHTML(it.cat, it.n, true)).join("");
+  attachItemHandlers(root);
+  attachStarHandlers(root);
+}
+
+/* ============================================================
+   RENDER · CATEGORIES
+   ============================================================ */
+function escapeHtml(s){ return String(s).replace(/[&<>"']/g, m => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m])); }
+function itemHTML(catId, name, isPriority, isCustom){
+  const k = keyOf(catId, name);
+  const checked = !!state[k];
+  const safe = escapeHtml(name);
+  const starOn = isPriority ? "is-on" : "";
+  const starLabel = isPriority ? "Unmark must pack first" : "Mark must pack first";
+  return `
+    <label class="item ${checked?"is-checked":""}" data-key="${k}" data-cat="${catId}" data-name="${safe}">
+      <input type="checkbox" ${checked?"checked":""} aria-label="${safe}">
+      <span class="item__label">${safe}</span>
+      <button class="item__star ${starOn}" type="button" aria-label="${starLabel}" title="${starLabel}" aria-pressed="${isPriority?"true":"false"}">
+        <svg viewBox="0 0 24 24" fill="${isPriority?"currentColor":"none"}" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><polygon points="12 2 14.39 6.84 20 7.66 16 11.56 16.94 17.06 12 14.77 7.06 17.06 8 11.56 4 7.66 9.61 6.84 12 2"/></svg>
+      </button>
+      <button class="item__remove" type="button" aria-label="Remove ${safe}" title="Remove">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </label>
+  `;
+}
+function renderCategories(){
+  const root = document.getElementById("cats");
+  root.innerHTML = CATEGORIES.map(c => `
+    <section class="cat" data-id="${c.id}">
+      <header class="cat__head" role="button" aria-expanded="true">
+        <span class="cat__icon">${ICONS[c.icon] || ""}</span>
+        <h3 class="cat__name">${c.name}</h3>
+        <span class="cat__meta" data-meta="${c.id}">0 / ${c.items.length}</span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+      </header>
+      <div class="cat__body">
+        ${c.items.map(it => itemHTML(c.id, it.n, isPriorityItem(c.id, it.n, it.priority))).join("")}
+        <div class="add-row">
+          <button class="add-btn" data-add="${c.id}" type="button">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+            Add item
+          </button>
+        </div>
+      </div>
+    </section>
+  `).join("");
+
+  // collapse handlers
+  root.querySelectorAll(".cat__head").forEach(h => {
+    h.addEventListener("click", e => {
+      if (e.target.closest("input")) return;
+      h.parentElement.classList.toggle("is-collapsed");
+    });
+  });
+  attachItemHandlers(root);
+  attachRemoveHandlers(root);
+  attachAddHandlers(root);
+  attachStarHandlers(root);
+  document.getElementById("catCount").textContent = `${CATEGORIES.length} categories`;
+}
+
+function attachStarHandlers(scope){
+  scope.querySelectorAll(".item__star").forEach(btn => {
+    btn.addEventListener("click", e => {
+      e.preventDefault(); e.stopPropagation();
+      const item = btn.closest(".item");
+      const catId = item.dataset.cat;
+      const name = item.dataset.name;
+      const cat = CATEGORIES.find(c => c.id === catId);
+      const def = cat ? !!(cat.items.find(it => it.n === name) || {}).priority : false;
+      const wasOn = isPriorityItem(catId, name, def);
+      const nowOn = !wasOn;
+      const k = keyOf(catId, name);
+      if (nowOn === def) delete priorityOverrides[k];
+      else priorityOverrides[k] = nowOn;
+      savePriority();
+      renderPriority();
+      renderCategories();
+      applyFilter();
+    });
+  });
+}
+
+function attachRemoveHandlers(scope){
+  scope.querySelectorAll(".item__remove").forEach(btn => {
+    btn.addEventListener("click", e => {
+      e.preventDefault(); e.stopPropagation();
+      const item = btn.closest(".item");
+      const catId = item.dataset.cat;
+      const name = item.dataset.name;
+      const cat = CATEGORIES.find(c => c.id === catId);
+      if (!cat) return;
+      cat.items = cat.items.filter(it => it.n !== name);
+      delete state[keyOf(catId, name)];
+      saveState();
+      saveCustom();
+      renderTabs();
+      renderPriority();
+      renderCategories();
+      applyFilter();
+      updateProgress();
+    });
+  });
+}
+
+function attachAddHandlers(scope){
+  scope.querySelectorAll(".add-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const catId = btn.dataset.add;
+      const row = btn.closest(".add-row");
+      row.innerHTML = `
+        <form class="add-form" data-add-form="${catId}">
+          <input type="text" placeholder="Add to this category…" autocomplete="off" maxlength="80" required>
+          <button class="add-btn" type="submit">Add</button>
+          <button class="add-cancel" type="button">Cancel</button>
+        </form>
+      `;
+      const form = row.querySelector("form");
+      const input = form.querySelector("input");
+      input.focus();
+      form.querySelector(".add-cancel").addEventListener("click", () => {
+        renderCategories(); applyFilter(); updateProgress();
+      });
+      form.addEventListener("submit", e => {
+        e.preventDefault();
+        const val = input.value.trim();
+        if (!val) return;
+        const cat = CATEGORIES.find(c => c.id === catId);
+        if (cat && !cat.items.find(it => it.n === val)) {
+          cat.items.push({ n: val, custom: true });
+          saveCustom();
+        }
+        renderTabs();
+        renderCategories();
+        applyFilter();
+        updateProgress();
+      });
+    });
+  });
+}
+
+function attachItemHandlers(scope){
+  scope.querySelectorAll(".item").forEach(el => {
+    const cb = el.querySelector("input[type=checkbox]");
+    cb.addEventListener("change", () => {
+      const k = el.dataset.key;
+      if (cb.checked) state[k] = true; else delete state[k];
+      saveState();
+      // Sync any duplicate UI (priority + cat) with same key
+      document.querySelectorAll(`.item[data-key="${CSS.escape(k)}"]`).forEach(other => {
+        const ocb = other.querySelector("input");
+        ocb.checked = cb.checked;
+        other.classList.toggle("is-checked", cb.checked);
+      });
+      updateProgress();
+    });
+  });
+}
+
+/* ============================================================
+   PROGRESS
+   ============================================================ */
+function updateProgress(){
+  let total = 0, done = 0;
+  CATEGORIES.forEach(c => {
+    let cDone = 0;
+    c.items.forEach(it => {
+      total++;
+      if (state[keyOf(c.id, it.n)]) { done++; cDone++; }
+    });
+    const meta = document.querySelector(`[data-meta="${c.id}"]`);
+    if (meta) meta.textContent = `${cDone} / ${c.items.length}`;
+  });
+  const pct = total ? Math.round((done/total)*100) : 0;
+  document.getElementById("countText").textContent = `${done} of ${total} packed`;
+  document.getElementById("pctText").textContent = `${pct}%`;
+  document.getElementById("bar").style.width = pct + "%";
+}
+
+/* ============================================================
+   RESET
+   ============================================================ */
+document.getElementById("resetBtn").addEventListener("click", () => {
+  if (!confirm("Reset the entire checklist?")) return;
+  state = {};
+  saveState();
+  document.querySelectorAll(".item").forEach(el => {
+    el.classList.remove("is-checked");
+    const cb = el.querySelector("input"); if (cb) cb.checked = false;
+  });
+  updateProgress();
+});
+
+/* ============================================================
+   INIT
+   ============================================================ */
+renderTimeline();
+renderTabs();
+renderPriority();
+renderCategories();
+applyFilter();
+updateProgress();
+</script>
+
+<!-- ============================================================
+     FIREBASE · auth + Firestore sync
+     ============================================================ -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
+import {
+  getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js";
+import {
+  getFirestore, doc, getDoc, setDoc, serverTimestamp
+} from "https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js";
+
+/* ---------- Replace with your Firebase project config ---------- */
+const firebaseConfig = {
+  apiKey: "AIzaSyDHzrs-ebj2R-I55f5hwXcT77L88ZBgm9w",
+  authDomain: "alaska-trip-f0a45.firebaseapp.com",
+  projectId: "alaska-trip-f0a45",
+  storageBucket: "alaska-trip-f0a45.firebasestorage.app",
+  messagingSenderId: "949147389160",
+  appId: "1:949147389160:web:16488adea24feecd314d5d"
+};
+
+const TRIP_NAME = "Alaska Cruise Packing Checklist";
+const DOC_ID = "alaskaCruise2026";
+
+let app, auth, db, provider;
+let currentUser = null;
+let saveTimer = null;
+let firebaseReady = false;
+
+try {
+  app = initializeApp(firebaseConfig);
+  auth = getAuth(app);
+  db = getFirestore(app);
+  provider = new GoogleAuthProvider();
+  firebaseReady = true;
+} catch (e) {
+  console.warn("Firebase init failed (config likely placeholder):", e);
+}
+
+/* ---------- DOM refs ---------- */
+const $ = (id) => document.getElementById(id);
+const modal = $("authModal");
+const pill = $("syncPill");
+const pillText = $("syncText");
+const footStatus = $("footStatus");
+const errBox = $("authErr");
+
+/* ---------- UI helpers ---------- */
+function setSync(state, text) {
+  pill.dataset.state = state;
+  pillText.textContent = text;
+  const footMap = {
+    local:  "State saved locally to your browser",
+    signin: "Sign in to sync across devices",
+    saving: "Syncing to Firebase…",
+    synced: "Synced to Firebase",
+  };
+  footStatus.textContent = footMap[state] || text;
+}
+function openModal() { modal.classList.add("is-open"); errBox.classList.remove("is-shown"); }
+function closeModal(){ modal.classList.remove("is-open"); }
+function showError(msg) { errBox.textContent = msg; errBox.classList.add("is-shown"); }
+
+/* ---------- Modal wiring ---------- */
+$("gearBtn").addEventListener("click", openModal);
+$("authClose").addEventListener("click", closeModal);
+modal.addEventListener("click", e => { if (e.target === modal) closeModal(); });
+document.addEventListener("keydown", e => { if (e.key === "Escape") closeModal(); });
+
+/* ---------- Initial state: signed-out signpost ---------- */
+if (!firebaseReady) {
+  setSync("local", "Saved locally");
+} else {
+  setSync("signin", "Sign in to sync");
+}
+
+/* ---------- Sign-in / sign-out ---------- */
+$("googleSignIn").addEventListener("click", async () => {
+  if (!firebaseReady) {
+    showError("Firebase isn't configured yet. Replace the firebaseConfig placeholders in the HTML.");
+    return;
+  }
+  try {
+    errBox.classList.remove("is-shown");
+    await signInWithPopup(auth, provider);
+  } catch (e) {
+    console.error(e);
+    showError(e.message || "Sign-in failed.");
+  }
+});
+
+$("signOutBtn").addEventListener("click", async () => {
+  if (!firebaseReady) return;
+  try { await signOut(auth); closeModal(); }
+  catch (e) { showError(e.message); }
+});
+
+/* ---------- Auth state ---------- */
+if (firebaseReady) {
+  onAuthStateChanged(auth, async (user) => {
+    currentUser = user;
+    if (user) {
+      $("authSignedOut").style.display = "none";
+      $("authSignedIn").style.display  = "";
+      $("userPhoto").src   = user.photoURL || "";
+      $("userName").textContent  = user.displayName || "Signed in";
+      $("userEmail").textContent = user.email || "";
+      $("authTitle").textContent = "Account";
+      $("authSub").textContent   = "Your checklist is synced to Firebase.";
+      await loadFromCloud(user.uid);
+    } else {
+      $("authSignedOut").style.display = "";
+      $("authSignedIn").style.display  = "none";
+      $("authTitle").textContent = "Sync across devices";
+      $("authSub").textContent   = "Sign in to save your checklist to the cloud and access it from any device.";
+      setSync("signin", "Sign in to sync");
+    }
+  });
+}
+
+/* ---------- Cloud load ---------- */
+async function loadFromCloud(uid) {
+  setSync("saving", "Loading…");
+  try {
+    const ref = doc(db, "users", uid, "packingChecklist", DOC_ID);
+    const snap = await getDoc(ref);
+    if (snap.exists()) {
+      const data = snap.data();
+      window.__app.applyRemote({
+        checked: data.checked || {},
+        customItems: data.customItems || {},
+        removedItems: data.removedItems || {},
+      });
+      setSync("synced", "Synced to Firebase");
+    } else {
+      // First time: push current local state up
+      await pushToCloud(uid);
+    }
+  } catch (e) {
+    console.error("Load failed:", e);
+    showError("Couldn't load from Firestore: " + (e.message || e));
+    setSync("local", "Saved locally");
+  }
+}
+
+/* ---------- Cloud push (debounced) ---------- */
+async function pushToCloud(uid) {
+  const snap = window.__app.snapshot();
+  setSync("saving", "Saving…");
+  try {
+    const ref = doc(db, "users", uid, "packingChecklist", DOC_ID);
+    await setDoc(ref, {
+      tripName: TRIP_NAME,
+      checked: snap.checked,
+      customItems: snap.customItems,
+      removedItems: snap.removedItems,
+      updatedAt: serverTimestamp(),
+    }, { merge: true });
+    setSync("synced", "Synced to Firebase");
+  } catch (e) {
+    console.error("Save failed:", e);
+    setSync("local", "Saved locally (sync error)");
+  }
+}
+
+/* ---------- Hook called by saveState/saveCustom ---------- */
+window.__cloudSync = function () {
+  if (!firebaseReady || !currentUser) return;
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(() => pushToCloud(currentUser.uid), 600);
+};
+</script>
+
+/* ============================================================
+   EXPORT for Firebase module to read/write
+   ============================================================ */
+window.__app = {
+  get state(){ return state; },
+  set state(v){ state = v || {}; },
+  CATEGORIES,
+  ORIGINAL,
+  STORAGE_KEY, CUSTOM_KEY, REMOVED_KEY,
+  rerender(){
+    renderTabs();
+    renderPriority();
+    renderCategories();
+    applyFilter();
+    updateProgress();
+  },
+  applyRemote(remote){
+    /* remote = {checked:{}, customItems:{}, removedItems:{}} */
+    if (remote && typeof remote.checked === "object") {
+      state = remote.checked || {};
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    }
+    /* Reset CATEGORIES to pristine then re-apply remote add/remove */
+    CATEGORIES.forEach(c => {
+      c.items = (ORIGINAL[c.id] || []).map(n => {
+        /* Preserve priority flags from defaults — search original DEFAULTS */
+        const def = DEFAULT_ITEMS[c.id]?.find(x => x.n === n);
+        return def ? {...def} : { n };
+      });
+    });
+    const removed = (remote && remote.removedItems) || {};
+    const added   = (remote && remote.customItems)  || {};
+    CATEGORIES.forEach(c => {
+      const drop = new Set(removed[c.id] || []);
+      c.items = c.items.filter(it => !drop.has(it.n));
+      (added[c.id] || []).forEach(name => {
+        if (!c.items.find(it => it.n === name)) c.items.push({ n: name, custom: true });
+      });
+    });
+    localStorage.setItem(REMOVED_KEY, JSON.stringify(removed));
+    localStorage.setItem(CUSTOM_KEY,  JSON.stringify(added));
+    this.rerender();
+  },
+  snapshot(){
+    const removed = {}, added = {};
+    CATEGORIES.forEach(c => {
+      const orig = ORIGINAL[c.id] || [];
+      const cur  = c.items.map(it => it.n);
+      const dropped = orig.filter(n => !cur.includes(n));
+      const extra   = cur.filter(n => !orig.includes(n));
+      if (dropped.length) removed[c.id] = dropped;
+      if (extra.length)   added[c.id]   = extra;
+    });
+    return { checked: state, customItems: added, removedItems: removed };
+  },
+};
+/* Cache pristine defaults for re-hydration after remote pulls */
+const DEFAULT_ITEMS = {};
+CATEGORIES.forEach(c => { DEFAULT_ITEMS[c.id] = c.items.map(it => ({...it})); });
+window.__app.DEFAULT_ITEMS = DEFAULT_ITEMS;
+</script>
+</body>
+</html>
